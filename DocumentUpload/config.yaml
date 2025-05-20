@@ -1,0 +1,13 @@
+alphasense:
+  api_key: your_api_key
+  username: your_email@domain.com
+  password: your_password
+  client_id: your_client_id
+  client_secret: your_client_secret
+
+  # File handling config
+  source_folder: ./upload
+  archive_folder: ./processed
+
+  # ./processed/uploaded/ for success
+  # .processed/failed/ for validation/upload failures

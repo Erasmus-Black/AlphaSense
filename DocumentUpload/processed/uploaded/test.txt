@@ -1,0 +1,29 @@
+curl -X POST http://localhost:5001/ingestion/v1/documents/upload -H "x-api-key: test-key" -H "Authorization: Bearer <YOUR_TOKEN_FROM_ABOVE>" -F "file=@/path/to/file.pdf" -F 'metadata={"name":"mock-doc","documentType":"pdf","tags":["test"]}'
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {
+                      "access_token": "f11368eb-170c-4934-8a5c-5442ec551eae",
+                      "expires_in": 3600,
+                      "token_type": "Bearer"
+                    }
+
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 109
+                    Content-Type: application/json
+                    Date: Mon, 19 May 2025 08:42:16 GMT
+                    Server: Werkzeug/3.1.3 Python/3.11.5
+
+                    {
+                      "access_token": "f11368eb-170c...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 109], [Content-Type, application/json], [Date, Mon, 19 May
+                    2025 08:42:16 GMT]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : System.__ComObject
+RawContentLength  : 109
+
+"C:\Windows\System32\curl.exe" -X POST "http://localhost:5001/ingestion/v1/documents/upload" -H "x-api-key: test-key" -H "Authorization: Bearer f11368eb-170c-4934-8a5c-5442ec551eae" -F "file=@test.txt" -F "metadata={""name"":""mock-doc"",""documentType"":""pdf"",""tags"":[""test""]}"

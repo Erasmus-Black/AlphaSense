@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myapp-config
+data:
+  config.yaml: |
+    server:
+      port: 8080
+    database:
+      host: db.mycompany.internal
+      port: 1521
+      user: myappuser
+      password: secretpassword
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp-container
+          image: myregistry/myapp:2.0.1
+          ports:
+            - containerPort: 5000
+          env:
+            - name: CONFIG_PATH
+              value: "/etc/myapp/config.yaml"
+          volumeMounts:
+            - name: config-volume
+              mountPath: "/etc/myapp/"
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: myapp-config

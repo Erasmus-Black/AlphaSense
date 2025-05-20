@@ -1,0 +1,51 @@
+
+Maximum 10 attachments are allowed to be ingested for a Parent document.
+Rate limit of 50 Requests Per Minute (RPM).
+Max File Size of 150 MB.
+Ingestion API supports the following document extensions only - pdf, html, htm, txt, doc, docx, xls, xlsx, ppt, pptx, msg, eml, csv, xlsb, xlsm, one, tsv, ods
+Filename must not contain any character (/ ,\\)
+Filename must contain only one dot. Double extensions (e.g. file.php.txt) is not permissible
+Maximum character length permissible as a filename is 255 characters
+
+Auth
+curl --location --request POST 'https://api.alpha-sense.com/auth' \
+    --header 'x-api-key: <YOUR API KEY>' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'grant_type=password' \
+    --data-urlencode 'username=<YOUR AlphaSense LOGIN EMAIL>' \
+    --data-urlencode 'password=<YOUR AlphaSense LOGIN PASSWORD>' \
+    --data-urlencode 'client_id=<YOUR CLIENT ID>' \
+    --data-urlencode 'client_secret=<YOUR CLIENT SECRET>'
+
+Refresh Auth
+curl --location --request POST 'https://api.alpha-sense.com/auth' \
+    --header 'x-api-key: <YOUR API KEY>' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'grant_type=refresh_token' \
+    --data-urlencode 'client_id=<YOUR CLIENT ID>' \
+    --data-urlencode 'client_secret=<YOUR CLIENT SECRET>'
+    --data-urlencode 'refresh_token=<REFRESH TOKEN>'
+
+Add the following checks to the files to be upload 
+
+        # check file types (pdf, html, htm, txt, doc, docx, xls, xlsx, ppt, pptx, msg, eml, csv, xlsb, xlsm, one, tsv, ods permitted)
+        # check file size (150 MB max)
+        # Filename must not contain these character (/ ,\\)
+        # Filename must contain only one dot. Double extensions (e.g. file.php.txt) is not permissible
+        # Maximum character length permissible as a filename is 255 characters
+
+Assume that there is a default folder given in the config.yaml that will contain the files. 
+
+Once uploaded (or rejected for upload, move the files to another location, also whould be in the config.yaml.  
+
+Use the following metadata format
+
+{  title: String,   
+companies: [Company],  
+customTags: [CustomTag],  
+shareInfo: IngestionApiShareInfo,  
+docAuthors: [DocumentAuthor],  
+documentOwner: String,  
+createdTimestamp: String,  
+sourceType: String,  
+documentUrl: String }
